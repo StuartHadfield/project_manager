@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ProjectItem from './ProjectItem'
+import ProjectItem from './ProjectItem';
+import uuid from 'uuid';
 
 class AddProject extends Component {
   constructor(){
@@ -9,7 +10,7 @@ class AddProject extends Component {
     }
   }
   static defaultProps  = {
-    categories: ['a', 'b', 'c']
+    categories: ['Web Development', 'Mobile Development', 'Blogs']
   }
 
   handleSubmit(e){
@@ -17,6 +18,7 @@ class AddProject extends Component {
       alert('Title required');
     } else {
       this.setState({newProject:{
+        id: uuid.v4(),
         title: this.refs.title.value,
         category: this.refs.category.value
       }}, function() {
@@ -50,6 +52,11 @@ class AddProject extends Component {
       </div>
     );
   }
+}
+
+ProjectItem.propTypes = {
+  categories: React.propTypes.array,
+  addProject: React.propTypes.func
 }
 
 export default AddProject;
