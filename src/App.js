@@ -14,24 +14,31 @@ class App extends Component {
   componentWillMount(){
     this.setState({projects: [
       {
-        title: 'A',
-        category: 'a'
+        title: 'Foo Project',
+        category: 'Web Development'
       },
       {
-        title: 'B',
-        category: 'b'
+        title: 'Bar App',
+        category: 'Mobile Development'
       },
       {
-        title: 'C',
-        category: 'c'
+        title: 'Personal Website',
+        category: 'Blogs'
       }
     ]});
+  }
+
+  handleAddProject(project){
+    console.log(project)
+    let projects = this.state.projects;
+    projects.push(project);
+    this.setState({projects:projects});
   }
 
   render() {
     return (
       <div className="Project Manager">
-        <AddProject />
+        <AddProject addProject={this.handleAddProject.bind(this)}/>
         <Projects projects={this.state.projects} />
       </div>
     );
